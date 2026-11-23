@@ -142,6 +142,43 @@
 .px-tiphint{opacity:.7;font-style:italic;margin-top:2px}
 .px-table tbody tr[aria-current="true"] td{font-weight:600}
 .px-mapsel{font-size:.95rem}
+.px-bm{position:relative;margin-right:10px}
+.px-bm-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:.8rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--px-line);background:var(--px-panel);color:var(--px-fg);cursor:pointer}
+.px-bm-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linejoin:round}
+.px-bm-btn.tem svg{fill:var(--px-a2);stroke:var(--px-a2)}
+.px-bm-btn[aria-expanded="true"]{border-color:var(--px-a1)}
+.px-bm-pop{position:absolute;right:0;top:calc(100% + 6px);z-index:40;width:310px;background:var(--px-panel);color:var(--px-fg);border:1px solid var(--px-line);border-radius:8px;box-shadow:0 14px 36px -10px rgba(0,0,0,.4);padding:8px 0;text-transform:none;letter-spacing:0}
+.px-bm-pop[hidden]{display:none!important}
+.px-bm-h{font-weight:700;font-size:.9rem;padding:6px 14px 8px;display:flex;align-items:center;gap:8px}
+.px-bm-hi{font-weight:400;color:var(--px-muted);cursor:help}
+.px-bm-vazio{padding:6px 14px 10px;font-size:.82rem;color:var(--px-muted)}
+.px-bm-row{display:flex;align-items:center;gap:4px;padding:0 6px 0 14px}
+.px-bm-row:hover{background:var(--px-panel2)}
+.px-bm-go{all:unset;flex:1;min-width:0;cursor:pointer;padding:8px 0;display:flex;flex-direction:column;gap:1px}
+.px-bm-go .n{font-size:.86rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.px-bm-go .a{font-size:.7rem;color:var(--px-muted)}
+.px-bm-more{all:unset;cursor:pointer;padding:4px 8px;border-radius:4px;color:var(--px-muted);font-size:1rem}
+.px-bm-more:hover{background:var(--px-line);color:var(--px-fg)}
+.px-bm-sub{display:flex;flex-direction:column;margin:0 10px 6px 24px;border-left:2px solid var(--px-line)}
+.px-bm-sub button{all:unset;cursor:pointer;font-size:.8rem;padding:5px 10px}
+.px-bm-sub button:hover{background:var(--px-panel2)}.px-bm-sub button.del{color:#C62828}
+.px-bm-add{border-top:1px solid var(--px-line);margin-top:6px;padding:8px 10px 2px;display:flex;gap:6px;align-items:center}
+.px-bm-new{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:.84rem;padding:6px 4px;width:100%}
+.px-bm-new svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2}
+.px-bm-inp{flex:1;min-width:0;font:inherit;font-size:.84rem;padding:6px 8px;border-radius:5px;border:1px solid var(--px-a1);background:var(--px-panel2);color:var(--px-fg)}
+.px-bm-ok{font:inherit;font-size:.8rem;font-weight:600;padding:6px 10px;border-radius:5px;border:1px solid var(--px-a1);background:var(--px-a1);color:#fff;cursor:pointer}
+.px-bm-aviso{color:#C62828;font-size:.8rem;padding:6px 14px 0}
+.px-drop{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;padding:28px 18px;border:2px dashed var(--px-line);border-radius:10px;cursor:pointer;background:var(--px-panel2);position:relative}
+.px-drop.over{border-color:var(--px-a1)}
+.px-drop input{position:absolute;width:1px;height:1px;opacity:0}
+.px-drop span{font-size:.8rem;color:var(--px-muted)}
+.px-drop-out{margin-top:12px;font-size:.84rem;display:flex;flex-direction:column;gap:3px}
+.px-drop-msg{margin:8px 0 0;padding:10px 12px;border-radius:6px;background:var(--px-panel2);line-height:1.5}
+.px-drop-msg.good{border-left:4px solid #1E8E5A}.px-drop-msg.bad{border-left:4px solid #C62828}
+.px-steps{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:.86rem;line-height:1.5}
+.px-themes .px-bm span{text-transform:none;letter-spacing:0;font-size:inherit;color:inherit;margin:0}
+.px-themes .px-bm .px-bm-go .a{font-size:.7rem;color:var(--px-muted)}
+.px-themes .px-bm .px-bm-hi{color:var(--px-muted)}
 .px-maptools{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:4px 0 12px}
 .px-maptools .px-seg{margin:0}
 .px-geo{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;border:1px solid var(--px-line);background:var(--px-panel);color:var(--px-fg);font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
@@ -209,6 +246,7 @@
       </div>
     </div>
     <div class="px-themes" id="temas">
+      <div class="px-bm" id="marcadores" data-draw="bm-menu" data-source="marcadores"></div>
       <span>Tema</span>
       <button class="px-tbtn" data-theme="t-marinho" aria-pressed="true"><i style="background:linear-gradient(135deg,#FFFFFF 50%,#06418A 50%)"></i>Azul Executivo</button>
       <button class="px-tbtn" data-theme="t-grafite" aria-pressed="false"><i style="background:linear-gradient(135deg,#06418A 50%,#FF8C0A 50%)"></i>Azul Noturno</button>
@@ -222,6 +260,7 @@
   </header>
 
   <nav class="px-tabs" role="tablist" aria-label="Páginas" id="abas">
+    <button role="tab" data-tab="pg-dados" aria-selected="false">Atualizar dados</button>
     <button role="tab" data-tab="pg-sellin" aria-selected="true">Sell-in</button>
     <button role="tab" data-tab="pg-leads" aria-selected="false">Funil de leads</button>
     <button role="tab" data-tab="pg-ops" aria-selected="false">Oportunidades &amp; forecast</button>
@@ -247,6 +286,29 @@
 
     <div class="px-main">
       <!-- ============ SELL-IN ============ -->
+      <!-- ============ ATUALIZAR DADOS ============ -->
+      <section class="px-tab" id="pg-dados" role="tabpanel" hidden>
+        <p class="px-lead" id="dados-lead">Base em uso: <b>.pbix SALES_FORCE_BI de 23/11/2026</b> (Salesforce). Todas as abas leem as mesmas três bases abaixo, então qualquer atualização vale para o painel inteiro de uma vez.</p>
+        <div class="px-kpis" id="dados-kpis" data-draw="dados-status" data-source="dstatus"></div>
+        <div class="px-two">
+          <div class="px-card" id="dados-upload">
+            <h2>Conferir um .pbix novo</h2>
+            <p class="note">O navegador não consegue abrir o modelo de dados do .pbix (ele vem comprimido em um formato fechado da Microsoft). Por isso a conferência aqui é do arquivo; a extração é feita pelo Claude.</p>
+            <div data-draw="dados-drop"></div>
+          </div>
+          <div class="px-card" id="dados-como">
+            <h2>Como atualizar mantendo a coerência</h2>
+            <ol class="px-steps">
+              <li><b>Publique/salve</b> o .pbix depois do refresh das 12:00.</li>
+              <li><b>Envie o .pbix ao Claude</b> no chat com "atualiza o painel" (ou deixe na pasta combinada, se a atualização automática estiver ligada).</li>
+              <li><b>Mesmas regras de sempre:</b> sell-in = pedidos Ativados (TotalAmount, EffectiveDate); representante pelo território cidade/UF do cliente; família de produto pelo SKU da OP; leads sem dados pessoais.</li>
+              <li><b>Conferência automática:</b> totais antes × depois (pedidos, sell-in, OPs, leads) e os selos ADENDO revistos.</li>
+              <li><b>Publicação:</b> painel online e HTML do frontend atualizados juntos; seus indicadores pessoais continuam valendo.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
       <section class="px-tab" id="pg-sellin" role="tabpanel">
         <div class="px-xf vazio" id="xf-sellin" data-draw="xf-sellin"></div>
         <p class="px-lead" id="resumo">Ago–out/26 somou <b data-draw="l-c3" data-source="sel" data-field="ago_out_26" data-row="0">—</b> contra <b data-draw="l-b3" data-source="sel" data-field="ago_out_25" data-row="0">—</b> no mesmo período de 2025 (<b data-draw="l-var" data-source="sel" data-field="var_pct" data-row="0">—</b>), com <b data-draw="l-nc" data-source="sel" data-field="ped_26" data-row="0">—</b> pedidos contra <b data-draw="l-nb" data-source="sel" data-field="ped_25" data-row="0">—</b>. Ticket médio do trimestre: <b data-draw="l-tc" data-source="sel" data-field="ticket_26" data-row="0">—</b> (<b data-draw="l-tv" data-source="sel" data-field="ticket_var" data-row="0">—</b>).</p>
@@ -791,6 +853,12 @@ dash.calc('mapsel', {inputs:['mapa'], title:'UFs clicadas no mapa', description:
   fn: (mapa) => { const s = mapa.some(r => r.on) ? mapa.filter(r => r.on) : mapa;
     return [{ufs: s.length, sellin: d3.sum(s, r => r.sellin), pipeline: d3.sum(s, r => r.pipeline), ponderado: d3.sum(s, r => r.ponderado), ops: d3.sum(s, r => r.ops), leads: d3.sum(s, r => r.leads), conv: d3.sum(s, r => r.conv)}]; }});
 
+dash.calc('dstatus', {inputs:['pedrows', 'detops', 'leadrows'], title:'Dados em uso', description:'Quantidade de linhas e datas mais recentes de cada base carregada no painel.',
+  fn: (pedidos, ops, leads) => { const F = window.PX_F;
+    const um = pedidos.reduce((a, x) => x.m > a ? x.m : a, ''); const lm = leads.reduce((a, x) => x.m && x.m > a ? x.m : a, '');
+    return [{pedidos: pedidos.length, sellin: F.soma(pedidos, x => x.v), ult_pedido: um || null, ops: ops.length, abertas: ops.filter(x => !F.fechada(x)).length,
+      fechadas: ops.filter(F.fechada).length, leads: leads.length, ult_lead: lm || '2026-11', reps: new Set(pedidos.map(x => x.rid)).size}]; }});
+
 </script>
 
 <script>
@@ -1320,6 +1388,149 @@ dash.calc('dlist', {inputs:['detops'], title:'Detalhe de OPs — lista',
   });
   dash.draw('det-tfoot', el => { const r = one('dsel'); const n = (dash.data('dlist').data || []).length;
     el.textContent = r ? ('Total: ' + nops(r.n) + ' · ' + P.brl(r.valor) + (r.n > n ? ' — a tabela mostra as ' + P.int(n) + ' maiores em valor' : '')) : '—'; });
+})();
+
+</script>
+<script>
+// ===== Indicadores pessoais (marcadores de filtros) e aba "Atualizar dados" =====
+(function(){
+  const P = window.PX;
+  // Onde guardar: no painel online, nos dados pessoais de cada leitor; no HTML do frontend, no navegador.
+  const local = { get(){ try { return JSON.parse(localStorage.getItem('px_marcadores') || '[]'); } catch(e) { return []; } },
+                  set(a){ try { localStorage.setItem('px_marcadores', JSON.stringify(a)); } catch(e) {} } };
+  const remoto = () => !!(window.claude && claude.use) && dash.data('marcadores').status !== 'missing';
+  let uid = null;
+  async function db(){ const [d, u] = await Promise.all([claude.use('db'), claude.use('user')]); if (!uid) uid = await u.id(); return d; }
+  function lista(){
+    if (remoto()) { const q = dash.data('marcadores'); return (q.status === 'ok' ? q.data : []).slice().sort((a, b) => String(a.criado || '').localeCompare(String(b.criado || ''))); }
+    return local.get();
+  }
+  let aviso = '';
+  async function salvar(id, row){
+    aviso = '';
+    if (remoto()) { try { const d = await db(); await d.doc('data/users/' + uid + '/px/marcadores/' + id).set(row); } catch(e) { aviso = 'Não foi salvo. Tente de novo.'; } }
+    else { const a = local.get().filter(x => x.id !== id); a.push(Object.assign({id}, row)); local.set(a); }
+    dash.draw('bm-menu');
+  }
+  async function excluir(id){
+    aviso = '';
+    if (remoto()) { try { const d = await db(); await d.doc('data/users/' + uid + '/px/marcadores/' + id).delete(); } catch(e) { aviso = 'Não foi excluído. Tente de novo.'; } }
+    else local.set(local.get().filter(x => x.id !== id));
+    dash.draw('bm-menu');
+  }
+  const abaAtual = () => { const b = document.querySelector('#abas [aria-selected="true"]'); return b ? b.getAttribute('data-tab') : 'pg-sellin'; };
+  const nomeAba = id => { const b = document.querySelector('#abas [data-tab="' + id + '"]'); return b ? b.textContent.trim() : ''; };
+  function estado(){ return {aba: abaAtual(), params: JSON.stringify(dash.params() || {})}; }
+  function aplicar(m){
+    let p = {}; try { p = JSON.parse(m.params || '{}'); } catch(e) {}
+    const limpo = {}; Object.keys(dash.params() || {}).forEach(k => { limpo[k] = Array.isArray((dash.params() || {})[k]) ? [] : (k === 'rep' ? 'r00' : (dash.params() || {})[k]); });
+    dash.setParams(Object.assign(limpo, p));
+    const b = document.querySelector('#abas [data-tab="' + m.aba + '"]'); if (b) b.click();
+  }
+  const ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4z"/></svg>';
+  function svgIcon(){ const t = document.createElement('template'); t.innerHTML = ICON; return t.content.firstChild; }
+
+  dash.draw('bm-menu', el => {
+    if (!el._built) {
+      el._built = true; el.replaceChildren();
+      const btn = document.createElement('button'); btn.type = 'button'; btn.className = 'px-bm-btn'; btn.setAttribute('aria-haspopup', 'menu'); btn.setAttribute('aria-expanded', 'false');
+      btn.append(svgIcon(), Object.assign(document.createElement('span'), {textContent: 'Indicadores'}));
+      const pop = document.createElement('div'); pop.className = 'px-bm-pop'; pop.hidden = true;
+      el.append(btn, pop); el._btn = btn; el._pop = pop;
+      btn.onclick = ev => { ev.stopPropagation(); pop.hidden = !pop.hidden; btn.setAttribute('aria-expanded', pop.hidden ? 'false' : 'true'); el._modo = null; dash.draw('bm-menu'); };
+      pop.addEventListener('click', ev => ev.stopPropagation());
+      document.addEventListener('click', () => { if (!pop.hidden) { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); el._modo = null; } });
+      document.addEventListener('keydown', ev => { if (ev.key === 'Escape' && !pop.hidden) { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); } });
+    }
+    const pop = el._pop; const itens = lista();
+    const kids = [];
+    const h = document.createElement('div'); h.className = 'px-bm-h'; h.textContent = 'Indicadores pessoais';
+    const hi = document.createElement('span'); hi.className = 'px-bm-hi'; hi.textContent = 'ⓘ';
+    hi.title = remoto() ? 'Salvos só para você neste painel: aba e todos os filtros (inclusive os de clique).' : 'Salvos neste navegador: aba e todos os filtros (inclusive os de clique).';
+    h.appendChild(hi); kids.push(h);
+    if (!itens.length) kids.push(Object.assign(document.createElement('div'), {className: 'px-bm-vazio', textContent: 'Nenhum indicador salvo ainda.'}));
+    itens.forEach(m => {
+      const row = document.createElement('div'); row.className = 'px-bm-row';
+      if (el._modo && el._modo.id === m.id && el._modo.tipo === 'ren') {
+        const inp = Object.assign(document.createElement('input'), {type: 'text', value: m.nome, className: 'px-bm-inp', maxLength: 60});
+        const ok = Object.assign(document.createElement('button'), {type: 'button', className: 'px-bm-ok', textContent: 'OK'});
+        const fim = () => { const n = inp.value.trim(); el._modo = null; if (n) salvar(m.id, {nome: n, aba: m.aba, params: m.params, criado: m.criado}); else dash.draw('bm-menu'); };
+        ok.onclick = fim; inp.onkeydown = ev => { if (ev.key === 'Enter') fim(); };
+        row.append(inp, ok); kids.push(row); setTimeout(() => inp.focus(), 0); return;
+      }
+      const go = Object.assign(document.createElement('button'), {type: 'button', className: 'px-bm-go'});
+      go.append(Object.assign(document.createElement('span'), {className: 'n', textContent: m.nome}), Object.assign(document.createElement('span'), {className: 'a', textContent: nomeAba(m.aba)}));
+      go.title = 'Aplicar este indicador'; go.onclick = () => { aplicar(m); pop.hidden = true; el._btn.setAttribute('aria-expanded', 'false'); };
+      const more = Object.assign(document.createElement('button'), {type: 'button', className: 'px-bm-more', textContent: '⋯', title: 'Mais opções'});
+      more.onclick = () => { el._modo = (el._modo && el._modo.id === m.id && el._modo.tipo === 'menu') ? null : {id: m.id, tipo: 'menu'}; dash.draw('bm-menu'); };
+      row.append(go, more); kids.push(row);
+      if (el._modo && el._modo.id === m.id && el._modo.tipo === 'menu') {
+        const sub = document.createElement('div'); sub.className = 'px-bm-sub';
+        const mk = (t, fn, cls) => { const b = Object.assign(document.createElement('button'), {type: 'button', textContent: t}); if (cls) b.className = cls; b.onclick = fn; return b; };
+        sub.append(
+          mk('Atualizar com os filtros atuais', () => { el._modo = null; const e = estado(); salvar(m.id, {nome: m.nome, aba: e.aba, params: e.params, criado: m.criado}); }),
+          mk('Renomear', () => { el._modo = {id: m.id, tipo: 'ren'}; dash.draw('bm-menu'); }),
+          mk('Excluir', () => { el._modo = null; excluir(m.id); }, 'del'));
+        kids.push(sub);
+      }
+    });
+    const add = document.createElement('div'); add.className = 'px-bm-add';
+    if (el._modo && el._modo.tipo === 'novo') {
+      const inp = Object.assign(document.createElement('input'), {type: 'text', className: 'px-bm-inp', placeholder: 'Nome do indicador (ex.: FG 90% nov/26)', maxLength: 60});
+      const ok = Object.assign(document.createElement('button'), {type: 'button', className: 'px-bm-ok', textContent: 'Salvar'});
+      const fim = () => { const n = inp.value.trim(); if (!n) { inp.focus(); return; } el._modo = null; const e = estado(); salvar(Date.now().toString(36), {nome: n, aba: e.aba, params: e.params, criado: new Date().toISOString()}); };
+      ok.onclick = fim; inp.onkeydown = ev => { if (ev.key === 'Enter') fim(); };
+      add.append(inp, ok); setTimeout(() => inp.focus(), 0);
+    } else {
+      const b = Object.assign(document.createElement('button'), {type: 'button', className: 'px-bm-new'});
+      b.append(svgIcon(), Object.assign(document.createElement('span'), {textContent: 'Adicionar um indicador pessoal'}));
+      b.title = 'Salva a aba atual e todos os filtros escolhidos'; b.onclick = () => { el._modo = {tipo: 'novo'}; dash.draw('bm-menu'); };
+      add.appendChild(b);
+    }
+    kids.push(add);
+    if (aviso) kids.push(Object.assign(document.createElement('div'), {className: 'px-bm-aviso', textContent: aviso}));
+    pop.replaceChildren(...kids);
+    el._btn.classList.toggle('tem', itens.length > 0);
+  });
+
+  // ---------- Aba "Atualizar dados" ----------
+  dash.draw('dados-status', el => {
+    const q = dash.data('dstatus'); if (!P.state(el, q, 'o status')) return; const r = q.data[0]; if (!r) { el.replaceChildren(); return; }
+    const card = (lab, field, val, sub) => { const d = document.createElement('div'); d.className = 'px-kpi'; const h3 = Object.assign(document.createElement('h3'), {textContent: lab});
+      const v = Object.assign(document.createElement('div'), {className: 'px-kv', textContent: val}); v.setAttribute('data-source', 'dstatus'); v.setAttribute('data-field', field); v.setAttribute('data-row', '0');
+      d.append(h3, v, Object.assign(document.createElement('div'), {className: 'px-ks', textContent: sub})); return d; };
+    el.replaceChildren(
+      card('Pedidos ativados', 'pedidos', P.int(r.pedidos), 'pedidos até ' + (r.ult_pedido ? P.mes(r.ult_pedido) : '—') + ' · ' + P.brl(r.sellin)),
+      card('Oportunidades', 'ops', P.int(r.ops), P.int(r.abertas) + ' abertas · ' + P.int(r.fechadas) + ' fechadas'),
+      card('Leads', 'leads', P.int(r.leads), 'criados até ' + P.mes(r.ult_lead)),
+      card('Representantes', 'reps', P.int(r.reps), 'territórios com pedido'));
+  });
+  dash.draw('dados-drop', el => {
+    if (el._built) return; el._built = true;
+    const box = document.createElement('label'); box.className = 'px-drop';
+    const inp = Object.assign(document.createElement('input'), {type: 'file', accept: '.pbix'});
+    const t1 = Object.assign(document.createElement('strong'), {textContent: 'Solte aqui o .pbix ou clique para escolher'});
+    const t2 = Object.assign(document.createElement('span'), {textContent: 'O painel confere o arquivo (nome, tamanho e data) e diz se ele é mais novo que os dados em uso.'});
+    const out = document.createElement('div'); out.className = 'px-drop-out'; out.setAttribute('aria-live', 'polite');
+    box.append(inp, t1, t2); el.append(box, out);
+    const BASE = '2026-11-23';
+    const ver = f => {
+      if (!f) return;
+      const ok = /\.pbix$/i.test(f.name); const dt = new Date(f.lastModified); const iso = dt.toISOString().slice(0, 10);
+      const mb = (f.size / 1048576).toFixed(1).replace('.', ',');
+      const linhas = [['Arquivo', f.name], ['Tamanho', mb + ' MB'], ['Modificado em', dt.toLocaleString('pt-BR')]];
+      out.replaceChildren(...linhas.map(([a, b]) => { const d = document.createElement('div'); d.append(Object.assign(document.createElement('span'), {textContent: a + ': '}), Object.assign(document.createElement('b'), {textContent: b})); return d; }));
+      const msg = document.createElement('p'); msg.className = 'px-drop-msg';
+      if (!ok) { msg.classList.add('bad'); msg.textContent = 'Este arquivo não é um .pbix.'; }
+      else if (iso > BASE) { msg.classList.add('good'); msg.textContent = 'Este .pbix é mais novo que os dados do painel (' + P.dt(BASE) + '). Envie o arquivo para o Claude no chat com "atualiza o painel": a extração roda com as mesmas regras e o painel online e o HTML são atualizados juntos.'; }
+      else { msg.textContent = 'Este .pbix não é mais novo que os dados em uso (' + P.dt(BASE) + '). Não há o que atualizar.'; }
+      out.appendChild(msg);
+    };
+    inp.onchange = () => ver(inp.files[0]);
+    box.addEventListener('dragover', ev => { ev.preventDefault(); box.classList.add('over'); });
+    box.addEventListener('dragleave', () => box.classList.remove('over'));
+    box.addEventListener('drop', ev => { ev.preventDefault(); box.classList.remove('over'); ver(ev.dataTransfer.files[0]); });
+  });
 })();
 
 </script>
