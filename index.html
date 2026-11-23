@@ -134,9 +134,12 @@
 .px-dbase{display:flex;flex-direction:column;gap:4px;min-width:0}
 .px-dbase .px-seg{margin:0}
 .px-fbar .px-dbase{grid-column:span 2}
-.px-anobar{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--px-line);border-radius:var(--px-r);background:var(--px-panel)}
+.px-anobar{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:10px 14px;border:1px solid var(--px-line);border-radius:var(--px-r);background:var(--px-panel)}
 .px-anobar .px-seg{margin:0}
 .px-anobar-w{position:relative}
+.px-anorow{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.px-anorow .px-xf-lbl{min-width:118px}
+.px-anobar .px-seg button:disabled{opacity:.35;cursor:not-allowed}
 .px-xf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px;border:1px dashed var(--px-line);border-radius:var(--px-r);background:var(--px-panel)}
 .px-xf.vazio{border-style:dashed;opacity:.85}
 .px-xf:not(.vazio){border:1px solid var(--px-a1);box-shadow:inset 4px 0 0 var(--px-a1)}
@@ -221,6 +224,15 @@
 .px-h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--px-muted);margin:0 0 6px}
 .px-ytbl tr.off td{opacity:.45}
 .px-ytbl td.good{color:#1E8E5A;font-weight:600}.px-ytbl td.bad{color:#C62828;font-weight:600}
+.px.t-grafite{--px-bg:#06418A;--px-panel:#FFFFFF;--px-panel2:#F3F6FB;--px-fg:#0B1F3A;--px-muted:#5B6B82;--px-line:#D9E2EF;--px-a1:#FF8C0A;--px-a2:#06418A;--px-a3:#9FB6D6;--px-soft:#D6DEEA;--px-good:#1E8E5A;--px-bad:#C62828;--px-sel:rgba(255,140,10,.14);--px-on:#FFFFFF;--px-tip:#FFFFFF;--px-logo:#FFFFFF}
+.px.t-grafite .px-top{border-bottom-color:rgba(255,255,255,.25)}
+.px.t-grafite .px-bname,.px.t-grafite .px-head h1,.px.t-grafite .px-lead,.px.t-grafite .px-ytitle{color:#FFFFFF}
+.px.t-grafite .px-bsub,.px.t-grafite .px-bby,.px.t-grafite .px-head p,.px.t-grafite .px-themes>span,.px.t-grafite .px-tab>.note,.px.t-grafite .px-ynote{color:rgba(255,255,255,.82)}
+.px.t-grafite .px-tabs{border-bottom-color:rgba(255,255,255,.25)}
+.px.t-grafite .px-tabs button{color:rgba(255,255,255,.85)}
+.px.t-grafite .px-tabs button:hover{color:#FFFFFF;background:rgba(255,255,255,.12)}
+.px.t-grafite .px-tabs button[aria-selected="true"]{color:#06418A;background:#FFFFFF}
+.px.t-grafite .px-lead .bad{color:#FFB4AB}.px.t-grafite .px-lead .good{color:#9FF0C4}
 .px-maptools{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:4px 0 12px}
 .px-maptools .px-seg{margin:0}
 .px-geo{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;border:1px solid var(--px-line);background:var(--px-panel);color:var(--px-fg);font:inherit;font-size:.82rem;font-weight:600;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
@@ -786,7 +798,7 @@ window.PX_F = (function(){
   const L = v => Array.isArray(v) ? v.map(String) : (v == null || v === '' ? [] : [String(v)]);
   const has = (arr, v) => !arr.length || arr.indexOf(String(v)) >= 0;
   function prm(){ const p = dash.params() || {}; const o = {rep: p.rep || 'r00'};
-    ['s_mes','s_prod','s_cid','s_uf','l_mes','l_orig','l_st','l_mot','o_fase','o_prob','o_cm','o_dm','o_orig','m_uf','o_ano'].forEach(k => o[k] = L(p[k])); o.o_base = p.o_base === 'cria' ? 'cria' : 'fech'; return o; }
+    ['s_mes','s_prod','s_cid','s_uf','l_mes','l_orig','l_st','l_mot','o_fase','o_prob','o_cm','o_dm','o_orig','m_uf','o_ano','o_mesn'].forEach(k => o[k] = L(p[k])); o.o_base = p.o_base === 'cria' ? 'cria' : 'fech'; return o; }
   const MESES = []; for (let y = 2025, m = 6; y < 2026 || m <= 11; m++) { if (m > 12) { m = 1; y++; } MESES.push(y + '-' + String(m).padStart(2, '0')); if (y === 2026 && m === 11) break; }
   const PARC = ['2025-06', '2026-11'];
   const HOJE = '2026-11-23';
@@ -804,15 +816,16 @@ window.PX_F = (function(){
   const dm = r => r.data ? r.data.slice(0, 7) : null;
   // ano da OP: pela data de fechamento/prevista (padrão) ou pela data de criação
   const anoOP = (r, p) => p.o_base === 'cria' ? (r.cm || '').slice(0, 4) : (r.data || '').slice(0, 4);
+  const mesOP = (r, p) => { const d = p.o_base === 'cria' ? (r.cm || '') : (r.data || ''); return d ? String(+d.slice(5, 7)) : ''; };
   function of(rows, p, skip){ skip = skip || {};
-    return rows.filter(r => (p.rep === 'r00' || r.rid === p.rep) && (!p.o_ano.length || p.o_ano.indexOf(anoOP(r, p)) >= 0) && (skip.fase || has(p.o_fase, r.fase)) && (skip.prob || has(p.o_prob, pk(r))) && (skip.cm || has(p.o_cm, r.cm)) && (skip.dm || has(p.o_dm, dm(r))) && (skip.orig || has(p.o_orig, r.origem))); }
+    return rows.filter(r => (p.rep === 'r00' || r.rid === p.rep) && (!p.o_ano.length || p.o_ano.indexOf(anoOP(r, p)) >= 0) && (!p.o_mesn.length || p.o_mesn.indexOf(mesOP(r, p)) >= 0) && (skip.fase || has(p.o_fase, r.fase)) && (skip.prob || has(p.o_prob, pk(r))) && (skip.cm || has(p.o_cm, r.cm)) && (skip.dm || has(p.o_dm, dm(r))) && (skip.orig || has(p.o_orig, r.origem))); }
   const on = (arr, v) => arr.length > 0 && arr.indexOf(String(v)) >= 0;
   function soma(rs, f){ let s = 0; rs.forEach(r => s += (+f(r) || 0)); return s; }
   function toggle(name, vals){ const p = dash.params() || {}; const cur = L(p[name]); vals = vals.map(String);
     const all = vals.every(v => cur.indexOf(v) >= 0); let nx = all ? cur.filter(v => vals.indexOf(v) < 0) : cur.concat(vals.filter(v => cur.indexOf(v) < 0));
     const o = {}; o[name] = nx; dash.setParams(o); }
   function clear(names){ const o = {}; names.forEach(n => o[n] = []); dash.setParams(o); }
-  return {prm, has, on, sf, lf, of, anoOP, soma, fechada, pk, dm, MESES, PARC, HOJE, FASES, FORA_PROD, toggle, clear};
+  return {prm, has, on, sf, lf, of, anoOP, mesOP, soma, fechada, pk, dm, MESES, PARC, HOJE, FASES, FORA_PROD, toggle, clear};
 })();
 
 dash.calc('replist', {inputs:['pedrows'], title:'Lista de representantes', description:'Representantes e supervisores presentes nos pedidos.',
@@ -925,6 +938,7 @@ dash.calc('oserie', {inputs:['detops'], title:'OPs por mês', description:'OPs c
     const c = new Map(), g = new Map(), gv = new Map(); rc.forEach(x => { if (x.cm) c.set(x.cm, (c.get(x.cm) || 0) + 1); });
     rg.forEach(x => { const m = F.dm(x); if (!m) return; g.set(m, (g.get(m) || 0) + 1); gv.set(m, (gv.get(m) || 0) + (x.valor || 0)); });
     let ms = F.MESES; if (p.o_ano.length) { ms = []; p.o_ano.slice().sort().forEach(a => { for (let i = 1; i <= 12; i++) ms.push(a + '-' + String(i).padStart(2, '0')); }); }
+    if (p.o_mesn.length) ms = ms.filter(m => p.o_mesn.indexOf(String(+m.slice(5, 7))) >= 0);
     return ms.map(m => ({mes: m, criadas: c.get(m) || 0, ganhas: g.get(m) || 0, valor_ganho: gv.get(m) || 0, on_c: F.on(p.o_cm, m), on_g: F.on(p.o_dm, m)})); }});
 dash.calc('oorig', {inputs:['detops'], title:'OPs por origem', description:'Origem do lead das OPs com win rate.',
   fn: (ops) => { const F = window.PX_F; const p = F.prm(); const r = F.of(ops, p, {orig: true});
@@ -954,8 +968,10 @@ dash.calc('dstatus', {inputs:['pedrows', 'detops', 'leadrows'], title:'Dados em 
       fechadas: ops.filter(F.fechada).length, leads: leads.length, ult_lead: lm || '2026-11', reps: new Set(pedidos.map(x => x.rid)).size}]; }});
 
 dash.calc('oanos', {inputs:['detops'], title:'Anos das oportunidades', description:'Quantidade de OPs por ano, pela data escolhida (fechamento/prevista ou criação).',
-  fn: (ops) => { const F = window.PX_F; const p = F.prm(); const m = new Map(); ops.forEach(r => { if (p.rep !== 'r00' && r.rid !== p.rep) return; const a = F.anoOP(r, p); if (!a) return; m.set(a, (m.get(a) || 0) + 1); });
-    return [...m.entries()].sort().map(([ano, ops]) => ({ano, ops, on: F.on(p.o_ano, ano)})); }});
+  fn: (ops) => { const F = window.PX_F; const p = F.prm(); const m = new Map(), mm = new Map(); ops.forEach(r => { if (p.rep !== 'r00' && r.rid !== p.rep) return; const a = F.anoOP(r, p); if (!a) return; m.set(a, (m.get(a) || 0) + 1);
+      if (!p.o_ano.length || p.o_ano.indexOf(a) >= 0) { const k = F.mesOP(r, p); mm.set(k, (mm.get(k) || 0) + 1); } });
+    return [...m.entries()].sort().map(([ano, ops]) => ({tipo: 'ano', ano, ops, on: F.on(p.o_ano, ano)}))
+      .concat([1,2,3,4,5,6,7,8,9,10,11,12].map(i => ({tipo: 'mes', ano: String(i), ops: mm.get(String(i)) || 0, on: F.on(p.o_mesn, String(i))}))); }});
 
 </script>
 
@@ -1160,15 +1176,16 @@ const PXJ = (s) => { try { return JSON.parse(s||'[]'); } catch(e) { return []; }
     const c=document.createElement('button'); c.type='button'; c.className='px-btn px-xf-clear'; c.textContent='Limpar cliques'; c.onclick=()=>X.clear(defs.map(d=>d[0])); kids.push(c);
     el.replaceChildren(...kids); }));
 
-  dash.draw('ops-ano',el=>{ const q=dash.data('oanos'); if(q.status!=='ok'){ el.replaceChildren(); return; } const p=dash.params()||{}; const base=p.o_base==='cria'?'cria':'fech'; const sel=Array.isArray(p.o_ano)?p.o_ano:[];
-    const g1=document.createElement('div'); g1.className='px-seg'; g1.setAttribute('role','group'); g1.setAttribute('aria-label','Ano');
-    const mk=(t,on,fn,tt)=>{ const b=document.createElement('button'); b.type='button'; b.textContent=t; b.setAttribute('aria-pressed',on?'true':'false'); if(tt) b.title=tt; b.onclick=fn; return b; };
-    g1.append(mk('Todos os anos',!sel.length,()=>dash.setParams({o_ano:[]})), ...q.data.map(r=>mk(r.ano,r.on,()=>X.toggle('o_ano',[r.ano]),P.int(r.ops)+' OPs')));
-    const g2=document.createElement('div'); g2.className='px-seg'; g2.setAttribute('role','group'); g2.setAttribute('aria-label','Data usada para o ano');
-    g2.append(mk('Ano de fechamento/previsto',base==='fech',()=>dash.setParams({o_base:'fech'})),mk('Ano de criação',base==='cria',()=>dash.setParams({o_base:'cria'})));
-    const lb=document.createElement('span'); lb.className='px-xf-lbl'; lb.textContent='Ano das OPs:';
-    el.replaceChildren(lb,g1,g2); });
-  // bases
+  dash.draw('ops-ano',el=>{ const q=dash.data('oanos'); if(q.status!=='ok'){ el.replaceChildren(); return; } const p=dash.params()||{}; const base=p.o_base==='cria'?'cria':'fech'; const sel=Array.isArray(p.o_ano)?p.o_ano:[]; const selm=Array.isArray(p.o_mesn)?p.o_mesn:[];
+    const mk=(t,on,fn,tt,dis)=>{ const b=document.createElement('button'); b.type='button'; b.textContent=t; b.setAttribute('aria-pressed',on?'true':'false'); if(tt) b.title=tt; if(dis) b.disabled=true; b.onclick=fn; return b; };
+    const seg=(lbl,kids)=>{ const g=document.createElement('div'); g.className='px-seg'; g.setAttribute('role','group'); g.setAttribute('aria-label',lbl); g.append(...kids); return g; };
+    const row=(lbl,...kids)=>{ const r=document.createElement('div'); r.className='px-anorow'; r.append(Object.assign(document.createElement('span'),{className:'px-xf-lbl',textContent:lbl}),...kids); return r; };
+    const anos=q.data.filter(r=>r.tipo==='ano'), meses=q.data.filter(r=>r.tipo==='mes'); const NM=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+    el.replaceChildren(
+      row('Ano das OPs:', seg('Ano',[mk('Todos os anos',!sel.length,()=>dash.setParams({o_ano:[]}))].concat(anos.map(r=>mk(r.ano,r.on,()=>X.toggle('o_ano',[r.ano]),P.int(r.ops)+' OPs')))),
+        seg('Data usada',[mk('Ano de fechamento/previsto',base==='fech',()=>dash.setParams({o_base:'fech'})),mk('Ano de criação',base==='cria',()=>dash.setParams({o_base:'cria'}))])),
+      row('Mês das OPs:', seg('Mês',[mk('Todos os meses',!selm.length,()=>dash.setParams({o_mesn:[]}))].concat(meses.map(r=>mk(NM[+r.ano-1],r.on,()=>X.toggle('o_mesn',[r.ano]),P.int(r.ops)+' OPs'+(sel.length?' em '+sel.join(', '):''),!r.ops&&!r.on))))));
+  });
   dash.draw('bases-cards',box=>{ const q=dash.data('bases'); if(q.status!=='ok'){ box.replaceChildren(); return; }
     box.replaceChildren(...q.data.map(b=>{ const bt=document.createElement('button'); bt.setAttribute('aria-current', b.id===window.PX_BASE?'true':'false');
       const mk=(c,t)=>Object.assign(document.createElement('div'),{className:c,textContent:t});
