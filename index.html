@@ -143,6 +143,29 @@
 .px-xf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px;border:1px dashed var(--px-line);border-radius:var(--px-r);background:var(--px-panel)}
 .px-xf.vazio{border-style:dashed;opacity:.85}
 .px-xf:not(.vazio){border:1px solid var(--px-a1);box-shadow:inset 4px 0 0 var(--px-a1)}
+.px-orow{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:10px 14px;border:1px solid var(--px-line);border-radius:var(--px-r);background:var(--px-panel)}
+.px-orow .px-xf-lbl{margin-right:6px}
+.px-orow{flex-direction:column;align-items:stretch;gap:10px}
+.px-otop{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.px-osearch{flex:1 1 280px;max-width:460px;font:inherit;font-size:.84rem;padding:7px 12px;border:1px solid var(--px-line);border-radius:999px;background:var(--px-panel2);color:var(--px-fg);outline:none}
+.px-osearch:focus{border-color:var(--px-a1);box-shadow:0 0 0 2px var(--px-sel)}
+.px-ochips{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.px-ochips .px-msg{font-size:.8rem;color:var(--px-muted)}
+.px-xlsx{margin-left:auto;font:inherit;font-size:.82rem;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid var(--px-a1);background:var(--px-a1);color:var(--px-on);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.px-xlsx:hover{filter:brightness(1.08)}
+.px-xlsx:disabled{opacity:.6;cursor:wait}
+.px-obtn{font:inherit;font-size:.78rem;padding:4px 10px;border-radius:999px;border:1px solid var(--px-line);background:var(--px-panel2);color:var(--px-fg);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.px-obtn b{font-weight:600;color:var(--px-muted);font-variant-numeric:tabular-nums}
+.px-obtn:hover{border-color:var(--px-a1)}
+.px-obtn[aria-pressed="true"]{border-color:var(--px-a1);background:var(--px-a1);color:var(--px-on)}
+.px-obtn[aria-pressed="true"] b{color:var(--px-on);opacity:.85}
+.px-obtn.mais{border-style:dashed;color:var(--px-muted)}
+.px-rank .sub{grid-column:2/4;font-size:.72rem;color:var(--px-muted);font-variant-numeric:tabular-nums}
+.px-rank .bar.stk{display:flex;height:7px;background:var(--px-soft)}
+.px-rank .bar.stk i{display:block;height:100%}
+.px-rlg{display:flex;flex-wrap:wrap;gap:4px 10px;margin:0 0 8px;font-size:.72rem;color:var(--px-muted)}
+.px-rlg span{display:inline-flex;align-items:center;gap:4px}
+.px-rlg i{width:9px;height:9px;border-radius:2px;display:inline-block}
 .px-xf-hint{font-size:.8rem;color:var(--px-muted)}
 .px-xf-lbl{font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--px-muted);margin-right:4px}
 .px-xf-chip{font:inherit;font-size:.8rem;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--px-a1);background:var(--px-panel2);color:var(--px-fg);cursor:pointer}
@@ -293,12 +316,7 @@
 <div class="px t-marinho" id="painel">
   <div class="px-top" id="topo">
     <div class="px-brand">
-      <img alt="Paim Business Intelligence" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDASIAAhEBAxEB/8QAGwABAAMBAQEBAAAAAAAAAAAAAAUGBwQDCAH/xAAaAQEAAgMBAAAAAAAAAAAAAAAAAQQCBQYD/9oADAMBAAIQAxAAAAH6oAAAAAAAAAAAAAAhpnELFeapc9MUucmZTI5iv01/teIcd/016dxLlhu7HNjgCWO7F44+HzDscDVOP3ffeZGxbzGIzXVPTb6zNeu8/kq1okLNYgSAAAAAAAAAAAAAAAAAAAAB/8QAJBAAAgMBAAAEBwAAAAAAAAAABAUCAwYBAAcQFRESFBYgUGD/2gAIAQEAAQUC/atmlKcNoaTOpV1sQYj0cTiHGhDRdVadc4u8DuRSmf47qglq2WcBGg0PjOmoC1bPd38pa95e81BuoJV3H6A0ZmwdvAkxzVyoa+vmRRd9BmGgtxEDaKIFRmzZ6NIQzaaNbNwmOz7lgiPzBt5zTOlH5DQoiWd/rdTAiovE101fa7y23O5wZDUQHEmftFXwgsrr71NT3x7RD54Kqofwn//EACURAAIBAgQGAwAAAAAAAAAAAAIDAQAEERMUMQUgIjAyQFFhwf/aAAgBAwEBPwHvPMgXMhvWlY089jMMPif2ki3IhrI3mcOVy81chXD7SwVbwTT6/ur661MwI+I+1//EACsRAAECAwMMAwAAAAAAAAAAAAECBAADERASQQUGExQhIzAxMkBSYYGR0f/aAAgBAgEBPwHjSEoWveGghznSzZgtm8vSKPrZDWaqYLszq/YpFLVC8KQ6YvBOo0ASPLH7w+Iycy1JBvGqjzNle4//xAA5EAACAQMCAgcEBgsAAAAAAAABAgMABBESMQUhExQiMkFRkSBSYdEGECMzgcEVQkNQU2BicXKi8f/aAAgBAQAGPwL96tcTbbBfePlWpp2BIzohOAPnQME86wg9t2fsAfjyqS0mYdOrEI45CUedQi6ZgZs6dK52/wC0Ybeb7Yc+jdSp+q4sI2JuIBlxjl7VpZxFY4IoumllkOETJxz9KVFMl8R+0n7n4JQUnl4Ivyr9J3Y6uUB6tAe+ze8fLFfR6YglVlL4UZO6UnE7eB7G3toCOsXSacthvnUEkfGouKqZNMkCwBRj4EV9IFjdV6tErRnoxn9X13qx4ubuExPpBtxFvy3JrhbXF1FLb3smkwJHgJt47+PsW88f3SP9rj/X8/WikzOEUd8DkT5VqtY1U++ebVDbFi88p291fE1waaDRotZdb6jjlldvSrmzikCSuBjP98/lVrZtFaW62pXAV+/gYz8K45MOjCXcQWPLf47+lWfD4jGZ4tGe12eQrg7w6MWsuqTUfDs/L2GjkUPGwwVbY1psi6KudCNzx8M+VaEZbWH+IObU2gNJcSfeTyd5qjcsysmcaaYa5ef9W1Eh5NtO/wAK7z7Y3pT0r6V8KTDP2G1Dn/In/8QAJhABAAICAgECBgMAAAAAAAAAAREhADFBYVEggRBxkaGx0VBgwf/aAAgBAQABPyH+VU+qG2uhgOJMnr1fu+hk3panlThDWq0GsA4YJjK1WLzpOvkxVaEoB6nfwMTdjIMafc9SiXRQQnybgbZc5s4qfhR87xisqNt8AxjFkuyRDwC1j3PkhB4Dlxb/ADgYoYdhH2HrCxwETk/teN4COpBMi2J2byDmtW8pFyxYRE1hFOHwKKVu88a9D5+ueU7PQwzNebZ8B4+bXWOEs897/wCYRB20vK+APrRkRCFyrdOdvtj4kE6oQemmOvSUmRK627leM1r3nCKdK3y7Vy8wMPvlVjVO2nnb0Jf0dIPDkusIBGs+a0xMtt54W5X6Hj7Yh3Qmf1nX5y+kqjmOujAJlGJbdit/ty+EdjpB46MS00cC99duAVnqdzPL46xGrAIbJrWr1/RP/9oADAMBAAIAAwAAABAAAAAAAAAAAAAABAFqy4sBG0tNSsAAAAAAAAAAAAAAAAAAAAAD/8QAJBEAAgEDAgYDAAAAAAAAAAAAAREAITGBQVEQMEBhcZGhseH/2gAIAQMBAT8Q5wsnp8/l4RaapEJP0GAcQ9KABEJgKvysR7xxvhXtMXjrg3AeluFrU9haBDUBDS9ysD1E4uo//8QAJBEBAAECBQMFAAAAAAAAAAAAAREAIRAxQVFhMEDwcYGRwdH/2gAIAQIBAT8Q6wkgbrweRTxLDR+n2msoIBTYlA82q7LAkYCr1pEkbBW91/QD7pzK2U18v80MYF7f/8QAIBABAQACAwADAAMAAAAAAAAAAREAITFBUSBhcRBQYP/aAAgBAQABPxD+1XjUUO8nbFXoFdGA5MQ5LCzUgrRdlJgZhwnNbSkKxF+sTb+++sXJcN01QatBa3pPTo9uIzOnQ5QQjsFTlP4FoD0dhIpu/dWM+Niu/mmu2D2Q1UEU4b4OwY8bjF+4NnyH2+QycErLoh5Qrd5mhbfPxNR7QNHbrNn31rDYupvvJRjX5cvFprJDdqoKYdzjL49wDBoXWQyTfA0E7PR9iYhPGSmDKgEQqrD8CjcF8BF+orofvkM0e/k5CuUuo+HHEWNAf3wfTXkyncZITf21i8oc6T5ror4o6Hlz6xNW7BpkalFR/GTK55sB4RKJTZDwigjhVeMJNu+s7rxMaujdjrAJ2HHDPFqeXXwJesktEHkTBRzpiTFiCWgdwgO/GFrnaYUdRWuciyYcy2X13H6q3hPZA17qqedRB4aaxulGRSjQ0Ud+BxhsS8IBCnIYx4nlMWM6QYACvZbP2vrRkMJkUHhqJqAGptuMl4zciElNp2l3yt/wf//Z">
-      <div>
-        <div class="px-bby">Criado por:</div>
-        <div class="px-bname">PAIM</div>
-        <div class="px-bsub">Business Intelligence</div>
-      </div>
+      <div class="px-bsub">Criado por Diogo Paim Gonçalves - BDR/BSA</div>
     </div>
 <div class="px-blogo" id="logo-bertolini"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 101.00236" role="img" aria-label="Bertolini Sistemas de Armazenagem"><g><g><path fill-rule="evenodd" d="M32.91238,29.75362h7.65282c2.67429,0,5.20051-2.74861,6.16623-6.09144.96572-3.41781.14857-6.16697-2.60049-6.16697h-7.6521l-3.56645,12.2584ZM25.11171,56.42548h7.6521c3.2692,0,5.94351-3.56577,7.13214-7.65212,1.1892-4.08634-.14791-5.79492-2.82287-5.79492h-8.02365l-3.93771,13.44703ZM19.39106,3.751h33.4325c16.19617,0,19.53917,5.64636,16.41902,16.0476-3.12062,10.92129-9.80694,14.78421-18.6482,16.49349v.22272c8.46972,1.18863,13.44757,5.20069,10.1042,16.56765-2.45157,8.3208-9.06365,17.08778-23.32831,17.08778H0L19.39106,3.751Z"></path><path fill-rule="evenodd" d="M99.40553,38.52042c1.33775-4.45718,1.48638-8.54352-3.04563-8.54352s-6.83493,4.08634-8.09841,8.54352h11.14403ZM114.04191,53.08228c-.96578,4.60647-6.98356,12.03572-13.00142,15.08199-6.38982,3.11996-12.63042,3.49146-17.31045,3.49146-19.98548,0-21.61977-10.62415-16.86486-26.81978,4.68003-16.19615,13.52131-26.82041,33.28338-26.82041,20.80239,0,21.17394,10.10365,15.52758,29.42046h-29.79174c-3.12064,10.62407-2.37729,11.73842,2.15418,11.73842,3.78914,0,5.57273-2.00579,7.20697-6.09214h18.79635Z"></path><path fill-rule="evenodd" d="M129.34646,19.50138h20.13405l-3.12062,10.7727h.14863c5.3491-8.02362,12.9269-12.25855,20.5047-12.25855l-7.13202,24.51695c-1.70852-1.11435-3.78861-1.70857-6.16643-1.70857-5.94349,0-11.21831,4.97775-12.77849,10.25265l-5.57203,19.0935h-20.72827l14.71049-50.66868Z"></path><path fill-rule="evenodd" d="M170.72827,19.50138l3.2687-11.06992h21.02533l-5.86923,19.46537h12.77897l-3.8634,11.21781h-12.10981l-3.56644,12.85333c-1.04004,3.49161.22287,6.31501,2.60005,6.31501l8.54419-.22291-3.49146,11.88705-24.96328.22294c-5.86921,0-7.65208-5.05206-6.09214-10.25279l8.46924-29.19756,3.26927-11.21833Z"></path><path fill-rule="evenodd" d="M231.72386,18.01535c-15.60193,0-26.00314,4.53219-32.46659,26.82045-5.86923,20.43057,0,25.9283,13.00118,26.74613l10.25283-35.29036c.89144-2.97133,2.74909-4.30859,5.20051-4.30859,2.45157,0,3.56644,1.33726,2.67499,4.30859l-10.25279,35.29036c13.44703-.81783,22.58544-6.38936,28.52902-26.74613,6.46345-22.28825-1.26294-26.82045-16.93915-26.82045"></path><polygon fill-rule="evenodd" points="265.97348 3.751 286.70179 3.751 267.38483 70.17025 246.58294 70.17025 265.97348 3.751"></polygon><polygon fill-rule="evenodd" points="274.88864 70.17006 295.69127 70.17006 310.40113 19.50138 289.67345 19.50138 274.88864 70.17006"></polygon><path fill-rule="evenodd" d="M317.75647,19.50138h20.43116l-2.52622,8.69263h.14837c5.49791-7.42987,10.40142-10.17848,17.53345-10.17848,9.28704,0,12.40714,6.90923,9.36131,17.23634l-10.1042,34.91819h-21.09911l8.84074-30.31187c1.11435-3.93779.51994-5.27501-2.00579-5.27501-2.74912,0-4.30925,1.33722-5.57201,5.86923l-8.69263,29.71765h-21.09985l14.78477-50.66868Z"></path><path fill-rule="evenodd" d="M376.00314,14.89491l3.26925-11.14409h20.72761l-3.26851,11.14409h-20.72835ZM374.66592,19.50138h20.72827l-14.71049,50.66868h-20.80255l14.78477-50.66868Z"></path><path fill-rule="evenodd" d="M293.61087,12.81502c4.60629-2.45212,8.17272.297,11.44127,2.67429,2.37777,1.78337,6.61208-.74285,7.05786-2.08007,1.56068-5.20069,1.85772-6.09214,3.34357-11.36696-7.2808,7.94912-12.85281-7.20649-20.72835-.07431l-4.01155,12.6299c2.15439-1.48585,1.93148-.96572,2.8972-1.78285"></path><path fill-rule="evenodd" d="M392.19948,65.86096c.59422,0,1.11435,0,1.11435-.74285,0-.59437-.59441-.66868-1.04007-.66868h-.96572v1.41153h.89144ZM391.30803,68.6844h-.81713v-4.90351h1.85713c1.18848,0,1.78289.3715,1.78289,1.41139,0,.89144-.52005,1.26291-1.26294,1.33722l1.33729,2.1549h-.89144l-1.26298-2.1549h-.74281v2.1549ZM392.19948,69.7244c1.85716,0,3.34353-1.48633,3.34353-3.49212,0-2.00561-1.48637-3.56574-3.34353-3.56574-1.93199,0-3.41784,1.56013-3.41784,3.56574,0,2.00579,1.48585,3.49212,3.41784,3.49212ZM387.81591,66.23228c0-2.52566,2.00576-4.30855,4.38356-4.30855,2.30283,0,4.30925,1.78289,4.30925,4.30855,0,2.5264-2.00642,4.30929-4.30925,4.30929-2.37781,0-4.38356-1.78289-4.38356-4.30929Z"></path><path fill-rule="evenodd" d="M58.91554,96.32161h1.63424c0,.74285.14863,1.41137.51994,1.85715.52061.89198,1.56066,1.33709,2.97223,1.33709.66852,0,1.26274-.07361,1.78287-.29702,1.03983-.3715,1.56044-1.04007,1.56044-2.00579,0-.7428-.2234-1.26292-.66852-1.55994-.44633-.2972-1.11485-.59442-2.08057-.81781l-1.70859-.3715c-1.11435-.29654-1.93198-.59424-2.37781-.89078-.81709-.52061-1.26294-1.41203-1.26294-2.4521,0-1.26274.44585-2.2292,1.18865-2.97133.81781-.81781,1.9315-1.18931,3.41784-1.18931,1.33709,0,2.4521.3715,3.41716,1.04002.89209.66924,1.41203,1.78359,1.41203,3.19497h-1.63429c-.07428-.66857-.2972-1.26281-.59489-1.63429-.52013-.66926-1.41157-1.04055-2.67431-1.04055-1.04007,0-1.70859.22339-2.1549.66905-.44511.44578-.66852.96572-.66852,1.56013,0,.66852.2234,1.18846.74335,1.48566.37148.14863,1.11435.44567,2.303.66852l1.78287.44585c.89192.22339,1.56044.51993,2.00627.81763.81715.66804,1.26292,1.56013,1.26292,2.74859,0,1.48585-.52013,2.5264-1.56013,3.19492-1.04055.59441-2.2292.89142-3.56629.89142-1.63424,0-2.82355-.3713-3.71497-1.26274-.96579-.81781-1.33709-1.93216-1.33709-3.41783"></path><rect x="72.51167" y="87.33212" width="1.78287" height="13.29838"></rect><path fill-rule="evenodd" d="M77.48909,96.32161h1.63429c0,.74285.22293,1.41137.52013,1.85715.51989.89198,1.56042,1.33709,3.04627,1.33709.59424,0,1.18846-.07361,1.70859-.29702,1.04007-.3715,1.55994-1.04007,1.55994-2.00579,0-.7428-.22285-1.26292-.6685-1.55994-.3715-.2972-1.11437-.59442-2.00579-.81781l-1.78287-.3715c-1.11485-.29654-1.93199-.59424-2.37777-.89078-.81715-.52061-1.18846-1.41203-1.18846-2.4521,0-1.26274.37131-2.2292,1.18846-2.97133.74353-.81781,1.93144-1.18931,3.34355-1.18931,1.33704,0,2.45139.3715,3.41711,1.04002.96644.66924,1.41205,1.78359,1.41205,3.19497h-1.63498c-.07428-.66857-.29647-1.26281-.51987-1.63429-.59424-.66926-1.48566-1.04055-2.74866-1.04055-.96572,0-1.70925.22339-2.15485.66905-.44583.44578-.66857.96572-.66857,1.56013,0,.66852.22274,1.18846.74287,1.48566.3713.14863,1.11483.44567,2.37775.66852l1.78287.44585c.81717.22339,1.48566.51993,2.00635.81763.7428.66804,1.18857,1.56013,1.18857,2.74859,0,1.48585-.52005,2.5264-1.56013,3.19492-1.04055.59441-2.2292.89142-3.56623.89142-1.56066,0-2.82342-.3713-3.71484-1.26274-.89144-.81781-1.33728-1.93216-1.33728-3.41783"></path><polygon fill-rule="evenodd" points="89.67318 87.33194 100.00031 87.33194 100.00031 88.89188 95.76532 88.89188 95.76532 100.63038 93.98245 100.63038 93.98245 88.89188 89.67318 88.89188 89.67318 87.33194"></polygon><polygon fill-rule="evenodd" points="102.67479 100.63069 102.67479 87.33212 111.96184 87.33212 111.96184 88.96653 104.38332 88.96653 104.38332 92.97793 111.36762 92.97793 111.36762 94.53855 104.38332 94.53855 104.38332 99.07055 112.11041 99.07055 112.11041 100.63069 102.67479 100.63069"></polygon><path fill-rule="evenodd" d="M115.23056,100.63069v-13.29857h2.45157l3.64051,11.21848,3.64057-11.21848h2.45157v13.29857h-1.63424v-7.87502c0-.22339,0-.66916.07411-1.33775v-2.00572l-3.64058,11.2185h-1.70852l-3.71486-11.2185v.37148c0,.37131.0743.89144.0743,1.48566v9.36135h-1.63442Z"></path><path fill-rule="evenodd" d="M131.6494,100.63069l1.41203-4.01207h4.97712l1.33775,4.01207h1.85716l-4.60629-13.29912h-1.93144l-4.82921,13.29912h1.78287ZM135.58717,89.26373l1.93144,5.9434h-4.01151l2.08007-5.9434Z"></path><path fill-rule="evenodd" d="M143.23945,96.32161h1.63429c0,.74285.22285,1.41137.51987,1.85715.52061.89198,1.56068,1.33709,2.97225,1.33709.66852,0,1.26274-.07361,1.78287-.29702,1.03981-.3715,1.56042-1.04007,1.56042-2.00579,0-.7428-.22339-1.26292-.669-1.55994-.44583-.2972-1.11435-.59442-2.00577-.81781l-1.78289-.3715c-1.11483-.29654-1.93198-.59424-2.37775-.89078-.81715-.52061-1.18865-1.41203-1.18865-2.4521,0-1.26274.3715-2.2292,1.18865-2.97133.7428-.81781,1.85764-1.18931,3.34347-1.18931,1.33709,0,2.45139.3715,3.41718,1.04002.89209.66924,1.41203,1.78359,1.41203,3.19497h-1.63429c-.07428-.66857-.29768-1.26281-.59489-1.63429-.52013-.66926-1.41157-1.04055-2.67431-1.04055-.96572,0-1.70859.22339-2.1549.66905-.44578.44578-.66852.96572-.66852,1.56013,0,.66852.22274,1.18846.7428,1.48566.37203.14863,1.1149.44567,2.30355.66852l1.85715.44585c.81715.22339,1.48614.51993,1.93199.81763.81715.66804,1.26292,1.56013,1.26292,2.74859,0,1.48585-.52013,2.5264-1.56013,3.19492-1.04055.59441-2.2292.89142-3.56629.89142-1.63424,0-2.82288-.3713-3.71497-1.26274-.89144-.81781-1.33709-1.93216-1.33709-3.41783"></path><path fill-rule="evenodd" d="M167.53383,100.63051c2.22864,0,3.71436-.96572,4.68058-3.04629.44511-1.11435.74304-2.37727.74304-3.78866,0-1.85715-.44631-3.34355-1.33775-4.53199-.96578-1.26294-2.303-1.93144-4.08586-1.93144h-5.12642v13.29838h5.12642ZM164.116,88.89207h3.04651c1.41139,0,2.45139.44567,3.04563,1.33709.66852.89211.96572,2.2292.96572,3.86362,0,.44565-.0743.89142-.14857,1.41137-.14863.81781-.37137,1.48633-.74287,2.08007-.37131.66918-.96572,1.11485-1.63424,1.33775-.37148.14857-.81715.14857-1.41137.14857h-3.12081v-10.17848Z"></path><polygon fill-rule="evenodd" points="176.22616 100.63069 176.22616 87.33212 185.5132 87.33212 185.5132 88.96653 177.9347 88.96653 177.9347 92.97793 184.91828 92.97793 184.91828 94.53855 177.9347 94.53855 177.9347 99.07055 185.66113 99.07055 185.66113 100.63069 176.22616 100.63069"></polygon><path fill-rule="evenodd" d="M195.24539,100.63069l1.41131-4.01207h5.05214l1.26346,4.01207h1.85716l-4.60629-13.29912h-1.93152l-4.75484,13.29912h1.70857ZM199.1831,89.26373l1.93152,5.9434h-4.01159l2.08007-5.9434Z"></path><path fill-rule="evenodd" d="M209.28694,100.63051v-5.72058h3.93779c.6685,0,1.18844.07428,1.55994.29702.51994.2972.89144.81715.89144,1.70925l.14863,2.22864c0,.51994,0,.89142.07428,1.03989,0,.22291.07483.37148.14863.44578h2.08055v-.29715c-.22339-.07435-.44578-.37137-.52061-.81715-.07361-.22293-.14789-.59424-.14789-1.11435l-.07428-1.78337c0-.81715-.14929-1.33728-.44585-1.70857-.22291-.2972-.59422-.59442-1.11483-.81715.59489-.29722,1.04-.743,1.33704-1.18865.29792-.51994.52064-1.18913.52064-2.00579,0-1.48633-.66905-2.60049-1.85768-3.12062-.59422-.29704-1.41157-.44559-2.37711-.44559h-5.94354v13.29838h1.78285ZM209.28694,88.89207h4.23479c.52013,0,1.04007.07428,1.41157.22293.59422.3713.96572,1.04.96572,2.00627,0,.81715-.22291,1.48566-.74281,1.78287-.44581.37148-1.11435.51994-1.93148.51994h-3.93779v-4.53201Z"></path><path fill-rule="evenodd" d="M221.02562,100.63069v-13.29857h2.45139l3.71484,11.21848,3.64071-11.21848h2.45142v13.29857h-1.70857v-7.87502c0-.22339.07428-.66916.07428-1.33775v-2.00572l-3.64068,11.2185h-1.70857l-3.64057-11.2185v11.2185h-1.63426Z"></path><path fill-rule="evenodd" d="M237.44427,100.63069l1.41139-4.01207h5.05214l1.26338,4.01207h1.93152l-4.68057-13.29912h-1.93152l-4.82923,13.29912h1.78289ZM241.38206,89.26373l1.93214,5.9434h-4.01221l2.08007-5.9434Z"></path><polygon fill-rule="evenodd" points="248.58873 100.63069 248.58873 99.14484 256.3894 88.89225 249.18295 88.89225 249.18295 87.33212 258.61858 87.33212 258.61858 88.89225 250.74308 99.07055 258.61858 99.07055 258.61858 100.63069 248.58873 100.63069"></polygon><polygon fill-rule="evenodd" points="261.44165 100.63069 261.44165 87.33212 270.72802 87.33212 270.72802 88.96653 263.15022 88.96653 263.15022 92.97793 270.2079 92.97793 270.2079 94.53855 263.15022 94.53855 263.15022 99.07055 270.87713 99.07055 270.87713 100.63069 261.44165 100.63069"></polygon><polygon fill-rule="evenodd" points="274.07155 100.63069 274.07155 87.33212 276.07731 87.33212 282.5408 98.10429 282.5408 87.33212 284.17572 87.33212 284.17572 100.63069 282.2438 100.63069 275.70581 89.85797 275.70581 100.63069 274.07155 100.63069"></polygon><path fill-rule="evenodd" d="M288.48449,100.63069l1.33722-4.01207h5.05214l1.33774,4.01207h1.85716l-4.60647-13.29912h-2.00579l-4.75484,13.29912h1.78285ZM292.42228,89.26373l1.93144,5.9434h-4.01207l2.08062-5.9434Z"></path><path fill-rule="evenodd" d="M306.09233,86.96044c1.18866,0,2.22922.22293,3.04634.7428,1.26294.66859,2.08007,1.93218,2.37729,3.64077h-1.70861c-.22357-.96572-.66868-1.63431-1.33792-2.08009-.6685-.44631-1.48566-.66924-2.45139-.66924-1.18844,0-2.1549.44583-2.97207,1.33775-.81709.96578-1.26291,2.303-1.26291,4.16016,0,1.5605.3715,2.8977,1.04074,3.86349.66802.96572,1.70857,1.48566,3.26851,1.48566,1.11435,0,2.08007-.37137,2.82296-1.04007.74351-.66852,1.18911-1.85716,1.18911-3.41766h-4.01207v-1.48585h5.64636v7.13271h-1.11417l-.44585-1.70907c-.59489.66852-1.11428,1.11417-1.56061,1.41137-.74285.44578-1.70857.66918-2.89705.66918-1.48585,0-2.82292-.52061-3.86358-1.56061-1.18855-1.26281-1.78289-3.04568-1.78289-5.27488,0-2.22864.52005-4.01151,1.70853-5.27499,1.11501-1.26292,2.5264-1.93144,4.30925-1.93144"></path><polygon fill-rule="evenodd" points="315.45357 100.63069 315.45357 87.33212 324.7406 87.33212 324.7406 88.96653 317.08779 88.96653 317.08779 92.97793 324.14564 92.97793 324.14564 94.53855 317.08779 94.53855 317.08779 99.07055 324.88849 99.07055 324.88849 100.63069 315.45357 100.63069"></polygon><path fill-rule="evenodd" d="M328.00915,100.63069v-13.29857h2.45186l3.64009,11.21848,3.64068-11.21848h2.45146v13.29857h-1.63429v-9.21278c.07428-.59435.07428-1.26292.07428-2.00572l-3.64071,11.2185h-1.70857l-3.71436-11.2185v.37148c0,.37131,0,.89144.07435,1.48566v9.36135h-1.63477Z"></path></g></g></svg></div>
     <div class="px-themes" id="temas">
@@ -335,8 +353,9 @@
 
   <div class="px-grid">
     <aside class="px-card" id="ranking"><span class="px-flag" title="Representante atribuído pelo território do cliente (cidade/UF). Em ~63% do valor bate com o código do pedido.">ADENDO</span>
-      <h2>Ranking de representantes</h2>
-      <p class="note">Sell-in acumulado jun/25–nov/26 e participação no total.</p>
+      <h2 id="rank-tit">Ranking de representantes</h2>
+      <p class="note" id="rank-note">Sell-in acumulado jun/25–nov/26 e participação no total.</p>
+      <div class="px-rlg" id="rank-lg" hidden></div>
       <ul class="px-rank" data-draw="rank" data-source="rank"></ul>
     </aside>
 
@@ -428,6 +447,14 @@
       <!-- ============ LEADS ============ -->
       <section class="px-tab" id="pg-leads" role="tabpanel" hidden>
         <div class="px-xf vazio" id="xf-leads" data-draw="xf-leads"></div>
+        <div class="px-orow" id="leads-origens" role="group" aria-label="Filtrar por origem">
+          <div class="px-otop">
+            <span class="px-xf-lbl">Origem</span>
+            <input type="search" class="px-osearch" id="orig-busca" placeholder="Digite o evento ou a origem (ex.: intralog, fispal, workshop)…" aria-label="Buscar origem" autocomplete="off">
+            <button type="button" class="px-xlsx" id="btn-xlsx" title="Baixa o ranking de leads por tratar, o detalhe dos leads e o ranking de sell-in com os filtros atuais">⬇ Exportar XLSX</button>
+          </div>
+          <div class="px-ochips" data-draw="lorig-chips" data-source="lorigall"></div>
+        </div>
         <p class="px-lead">De <b data-draw="ld-total" data-source="lsel" data-field="leads" data-row="0">—</b> leads, <b data-draw="ld-conv" data-source="lsel" data-field="convertidos" data-row="0">—</b> foram convertidos (<b data-draw="ld-taxa" data-source="lsel" data-field="taxa_conv" data-row="0">—</b>). <b data-draw="ld-novo" data-source="lsel" data-field="novos_sem_contato" data-row="0">—</b> ainda estão como "Novo", sem tratamento registrado (<b data-draw="ld-novopct" data-source="lsel" data-field="pct_novo" data-row="0">—</b> da base).</p>
         <div class="px-kpis">
           <div class="px-kpi"><h3>Leads</h3><div class="px-kv" data-draw="lk-total" data-source="lsel" data-field="leads" data-row="0">—</div><div class="px-ks">jun/24 a nov/26</div></div>
@@ -809,7 +836,7 @@ window.PX_F = (function(){
     return rows.filter(r => (skip.rep || p.rep === 'r00' || r.rid === p.rep) && (skip.mes || has(p.s_mes, r.m)) && (skip.prod || has(p.s_prod, r.fam)) && (skip.cid || has(p.s_cid, r.cid)) && (skip.uf || has(p.s_uf, r.uf))); }
   // leads
   function lf(rows, p, skip){ skip = skip || {};
-    return rows.filter(r => (p.rep === 'r00' || r.rid === p.rep) && (skip.mes || has(p.l_mes, r.m)) && (skip.orig || has(p.l_orig, r.o)) && (skip.st || has(p.l_st, r.st)) && (skip.mot || !p.l_mot.length || p.l_mot.indexOf(String(r.mot)) >= 0)); }
+    return rows.filter(r => (skip.rep || p.rep === 'r00' || r.rid === p.rep) && (skip.mes || has(p.l_mes, r.m)) && (skip.orig || has(p.l_orig, r.o)) && (skip.st || has(p.l_st, r.st)) && (skip.mot || !p.l_mot.length || p.l_mot.indexOf(String(r.mot)) >= 0)); }
   // oportunidades
   const fechada = r => r.fase === 'Fechado Ganho' || r.fase === 'Fechado Perdido';
   const pk = r => r.prob == null ? 'Sem prob.' : r.prob + '%';
@@ -915,6 +942,19 @@ dash.calc('lorig', {inputs:['leadrows'], title:'Leads por origem', description:'
 dash.calc('lstatus', {inputs:['leadrows'], title:'Status dos leads', description:'Leads por status atual.',
   fn: (leads) => { const F = window.PX_F; const p = F.prm(); const r = F.lf(leads, p, {st: true}); const n = r.length;
     return d3.rollups(r, a => a.length, x => x.st).map(([nome, v]) => ({nome, valor: v, share: n ? v / n : null, on: F.on(p.l_st, nome)})).sort((a, b) => b.valor - a.valor); }});
+dash.calc('lorigall', {inputs:['leadrows'], title:'Origens dos leads', description:'Todas as origens com volume (respeita representante e demais filtros da aba Leads, exceto a própria origem).',
+  fn: (leads) => { const F = window.PX_F; const p = F.prm(); const r = F.lf(leads, p, {orig: true});
+    const tot = d3.rollups(leads, a => a.length, x => x.o);
+    const cur = new Map(d3.rollups(r, a => a.length, x => x.o));
+    return tot.map(([o]) => ({k: o, origem: o || 'Não informada', valor: cur.get(o) || 0, on: F.on(p.l_orig, o)})).sort((a, b) => b.valor - a.valor || (a.origem > b.origem ? 1 : -1)); }});
+dash.calc('lrank', {inputs:['leadrows', 'replist'], title:'Ranking de leads por tratar', description:'Leads em aberto por representante e por etapa (Novo, Tentando contato, Qualificando, Nutrindo), com os filtros da aba Leads (origem, mês, status). Parado = em aberto e criado há mais de 60 dias.',
+  fn: (leads, reps) => { const F = window.PX_F; const p = F.prm(); const r = F.lf(leads, p, {rep: true});
+    const nome = new Map(reps.map(x => [x.id, x.rep])); const ET = ['Novo', 'Tentando contato', 'Qualificando', 'Nutrindo'];
+    const lim = (() => { const [y, m] = F.HOJE.split('-').map(Number); const d = new Date(y, m - 1 - 2, 1); return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0'); })();
+    const M = new Map(); r.forEach(x => { if (!M.has(x.rid)) M.set(x.rid, {id: x.rid, rep: nome.get(x.rid) || x.rid, leads: 0, conv: 0, desq: 0, aberto: 0, parado: 0, Novo: 0, 'Tentando contato': 0, Qualificando: 0, Nutrindo: 0});
+      const g = M.get(x.rid); g.leads++; if (x.cv) g.conv++; if (x.st === 'Desqualificado') g.desq++; if (ET.indexOf(x.st) >= 0) { g[x.st]++; g.aberto++; if (x.m && x.m <= lim) g.parado++; } });
+    const T = d3.sum([...M.values()], g => g.aberto);
+    return [...M.values()].filter(g => g.aberto > 0).map(g => ({...g, share: T ? g.aberto / T : null})).sort((a, b) => b.aberto - a.aberto || b.Novo - a.Novo); }});
 dash.calc('lmotivos', {inputs:['leadrows'], title:'Motivos de desqualificação', description:'Principais motivos registrados na desqualificação.',
   fn: (leads) => { const F = window.PX_F; const p = F.prm(); const r = F.lf(leads, p, {mot: true}).filter(x => x.mot); const t = r.length;
     return d3.rollups(r, a => a.length, x => x.mot).map(([nome, v]) => ({nome, valor: v, share: t ? v / t : null, on: F.on(p.l_mot, nome)})).sort((a, b) => b.valor - a.valor).slice(0, 8); }});
@@ -1035,7 +1075,130 @@ const PXJ = (s) => { try { return JSON.parse(s||'[]'); } catch(e) { return []; }
   txt('ok-vg','osel',r=>P.brl(r.valor_ganho)); txt('ok-g','osel',r=>P.int(r.ganhas)); txt('ok-tg','osel',r=>P.brl(r.ticket_ganho));
   txt('ok-wr','osel',r=>P.pct(r.win_rate)); txt('ok-wrv','osel',r=>P.pct(r.win_rate_valor)); txt('ok-venc','osel',r=>P.int(r.vencidas)); txt('ok-vencv','osel',r=>P.brl(r.valor_vencido));
 
+  window.PX_OMAIS=false;
+  window.PX_OBUSCA='';
+  const PX_NORM=t=>String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  dash.draw('lorig-chips',el=>{
+    const q=dash.data('lorigall'); if(q.status!=='ok'){ el.replaceChildren(); return; }
+    const sel=q.data.filter(r=>r.on); const N=10; const bq=PX_NORM(window.PX_OBUSCA).trim();
+    const mk=(txt,n,on,fn,cls)=>{ const b=document.createElement('button'); b.type='button'; b.className='px-obtn'+(cls?' '+cls:''); b.setAttribute('aria-pressed',on?'true':'false'); b.append(txt); if(n!=null){ const c=document.createElement('b'); c.textContent=P.int(n); b.append(c); } b.onclick=fn; return b; };
+    const todas=mk('Todas',d3.sum(q.data,r=>r.valor),!sel.length,()=>X.clear(['l_orig']));
+    let lista, out;
+    if(bq){
+      const ach=q.data.filter(r=>PX_NORM(r.origem).indexOf(bq)>=0);
+      lista=ach.concat(sel.filter(r=>ach.indexOf(r)<0));
+      out=[todas,...lista.map(r=>mk(r.origem,r.valor,r.on,()=>X.toggle('l_orig',[r.k])))];
+      if(ach.length>1) out.push(mk('Selecionar as '+ach.length,null,false,()=>{ const ks=ach.map(r=>r.k); const p=dash.params()||{}; const cur=Array.isArray(p.l_orig)?p.l_orig:(p.l_orig?[p.l_orig]:[]); dash.setParams({l_orig:[...new Set(cur.concat(ks))]}); },'mais'));
+      if(!ach.length){ const m=document.createElement('span'); m.className='px-msg'; m.textContent='Nenhuma origem contém "'+window.PX_OBUSCA+'".'; out.push(m); }
+    } else {
+      lista=window.PX_OMAIS?q.data:q.data.slice(0,N).concat(sel.filter(r=>q.data.indexOf(r)>=N));
+      out=[todas,...lista.map(r=>mk(r.origem,r.valor,r.on,()=>X.toggle('l_orig',[r.k])))];
+      const rest=q.data.length-N;
+      if(rest>0) out.push(mk(window.PX_OMAIS?'Mostrar menos':'+ '+rest+' origens',null,false,()=>{ window.PX_OMAIS=!window.PX_OMAIS; dash.draw('lorig-chips'); },'mais'));
+    }
+    el.replaceChildren(...out);
+  });
+  (function(){ const inp=document.getElementById('orig-busca'); if(!inp) return;
+    inp.addEventListener('input',()=>{ window.PX_OBUSCA=inp.value; dash.draw('lorig-chips'); });
+    inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); const q=dash.data('lorigall'); const bq=PX_NORM(inp.value).trim(); if(!bq||q.status!=='ok') return;
+        const r=q.data.find(x=>PX_NORM(x.origem).indexOf(bq)>=0); if(r && !r.on) X.toggle('l_orig',[r.k]); }
+      if(e.key==='Escape'){ inp.value=''; window.PX_OBUSCA=''; dash.draw('lorig-chips'); } });
+  })();
+
+  // ---------- Exportação XLSX (gerada no navegador, sem bibliotecas externas) ----------
+  const PX_XLSX=(function(){
+    const enc=new TextEncoder(); const CRC=(()=>{ const t=new Uint32Array(256); for(let n=0;n<256;n++){ let c=n; for(let k=0;k<8;k++) c=c&1?0xEDB88320^(c>>>1):c>>>1; t[n]=c>>>0; } return t; })();
+    const crc32=b=>{ let c=0xFFFFFFFF; for(let i=0;i<b.length;i++) c=CRC[(c^b[i])&255]^(c>>>8); return (c^0xFFFFFFFF)>>>0; };
+    function zip(files){ const parts=[], cen=[]; let off=0; const d=new Date();
+      const dt=((d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1))&0xFFFF, dd=(((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate())&0xFFFF;
+      files.forEach(f=>{ const nm=enc.encode(f.name), data=enc.encode(f.data), c=crc32(data);
+        const h=new DataView(new ArrayBuffer(30)); h.setUint32(0,0x04034b50,true); h.setUint16(4,20,true); h.setUint16(6,0x0800,true); h.setUint16(8,0,true); h.setUint16(10,dt,true); h.setUint16(12,dd,true); h.setUint32(14,c,true); h.setUint32(18,data.length,true); h.setUint32(22,data.length,true); h.setUint16(26,nm.length,true); h.setUint16(28,0,true);
+        parts.push(new Uint8Array(h.buffer),nm,data);
+        const z=new DataView(new ArrayBuffer(46)); z.setUint32(0,0x02014b50,true); z.setUint16(4,20,true); z.setUint16(6,20,true); z.setUint16(8,0x0800,true); z.setUint16(10,0,true); z.setUint16(12,dt,true); z.setUint16(14,dd,true); z.setUint32(16,c,true); z.setUint32(20,data.length,true); z.setUint32(24,data.length,true); z.setUint16(28,nm.length,true); z.setUint32(42,off,true);
+        cen.push(new Uint8Array(z.buffer),nm); off+=30+nm.length+data.length; });
+      const cs=cen.reduce((a,b)=>a+b.length,0); const e=new DataView(new ArrayBuffer(22)); e.setUint32(0,0x06054b50,true); e.setUint16(8,files.length,true); e.setUint16(10,files.length,true); e.setUint32(12,cs,true); e.setUint32(16,off,true);
+      return new Blob([...parts,...cen,new Uint8Array(e.buffer)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}); }
+    const esc=v=>String(v).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    const col=n=>{ let s=''; n++; while(n>0){ const m=(n-1)%26; s=String.fromCharCode(65+m)+s; n=Math.floor((n-1)/26); } return s; };
+    // sheet: {name, head:[...], rows:[[...]], widths:[...], fmt:{colIndex:'pct'|'int'|'brl'}, notes:[...]}
+    function sheetXml(sh){ const F=sh.fmt||{}; const st=(j,v)=>typeof v==='number'?(F[j]==='pct'?2:F[j]==='brl'?3:4):0;
+      const cell=(v,r,j,hd)=>{ const ref=col(j)+r; if(v==null||v==='') return ''; if(hd) return '<c r="'+ref+'" s="1" t="inlineStr"><is><t xml:space="preserve">'+esc(v)+'</t></is></c>';
+        if(typeof v==='number'&&isFinite(v)) return '<c r="'+ref+'" s="'+st(j,v)+'"><v>'+v+'</v></c>'; return '<c r="'+ref+'" t="inlineStr"><is><t xml:space="preserve">'+esc(v)+'</t></is></c>'; };
+      let r=1, out=[]; (sh.notes||[]).forEach(n=>{ out.push('<row r="'+r+'">'+'<c r="A'+r+'" s="'+(r===1?5:6)+'" t="inlineStr"><is><t xml:space="preserve">'+esc(n)+'</t></is></c></row>'); r++; });
+      if(sh.notes&&sh.notes.length){ r++; } const hr=r;
+      out.push('<row r="'+r+'">'+sh.head.map((h,j)=>cell(h,r,j,true)).join('')+'</row>'); r++;
+      sh.rows.forEach(row=>{ out.push('<row r="'+r+'">'+row.map((v,j)=>cell(v,r,j,false)).join('')+'</row>'); r++; });
+      const last=col(sh.head.length-1);
+      const cols='<cols>'+sh.head.map((h,j)=>'<col min="'+(j+1)+'" max="'+(j+1)+'" width="'+((sh.widths&&sh.widths[j])||14)+'" customWidth="1"/>').join('')+'</cols>';
+      const pane='<sheetViews><sheetView workbookViewId="0"><pane ySplit="'+hr+'" topLeftCell="A'+(hr+1)+'" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews>';
+      return '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'+pane+cols+'<sheetData>'+out.join('')+'</sheetData>'+(sh.rows.length?'<autoFilter ref="A'+hr+':'+last+(hr+sh.rows.length)+'"/>':'')+'</worksheet>'; }
+    const styles='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><numFmts count="2"><numFmt numFmtId="164" formatCode="0.0%"/><numFmt numFmtId="165" formatCode="&quot;R$&quot; #,##0"/></numFmts><fonts count="4"><font><sz val="10"/><name val="Arial"/></font><font><b/><sz val="10"/><color rgb="FFFFFFFF"/><name val="Arial"/></font><font><b/><sz val="12"/><name val="Arial"/></font><font><i/><sz val="9"/><color rgb="FF5B6B82"/><name val="Arial"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF06418A"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="7"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="3" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="0" fontId="2" fillId="0" borderId="0" xfId="0" applyFont="1"/><xf numFmtId="0" fontId="3" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs></styleSheet>';
+    function build(sheets){ const files=[];
+      files.push({name:'[Content_Types].xml',data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>'+sheets.map((s,i)=>'<Override PartName="/xl/worksheets/sheet'+(i+1)+'.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>').join('')+'</Types>'});
+      files.push({name:'_rels/.rels',data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'});
+      files.push({name:'xl/workbook.xml',data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets>'+sheets.map((s,i)=>'<sheet name="'+esc(s.name.slice(0,31))+'" sheetId="'+(i+1)+'" r:id="rId'+(i+1)+'"/>').join('')+'</sheets></workbook>'});
+      files.push({name:'xl/_rels/workbook.xml.rels',data:'<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+sheets.map((s,i)=>'<Relationship Id="rId'+(i+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet'+(i+1)+'.xml"/>').join('')+'<Relationship Id="rId'+(sheets.length+1)+'" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'});
+      files.push({name:'xl/styles.xml',data:styles});
+      sheets.forEach((s,i)=>files.push({name:'xl/worksheets/sheet'+(i+1)+'.xml',data:sheetXml(s)}));
+      return zip(files); }
+    return {build};
+  })();
+  function exportarLeads(){
+    const p=X.prm(); const reps=dash.data('replist').data||[]; const rinfo=new Map(reps.map(r=>[r.id,r]));
+    const og=p.l_orig.length?p.l_orig.join(', '):'Todas'; const repSel=p.rep==='r00'?'Todos os representantes':((rinfo.get(p.rep)||{}).rep||p.rep);
+    const hoje=new Date(); const hs=hoje.toLocaleDateString('pt-BR')+' '+hoje.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    const filtros=['Filtros: origem = '+og+' · representante = '+repSel+(p.l_mes.length?' · mês de criação = '+p.l_mes.join(', '):'')+(p.l_st.length?' · status = '+p.l_st.join(', '):'')+(p.l_mot.length?' · motivo = '+p.l_mot.join(', '):''),
+      'Exportado em '+hs+' · fonte: painel comercial (SALES_FORCE_BI .pbix). "Parado" = em aberto e criado há mais de 60 dias (o painel não tem data da última atividade).'];
+    const lr=dash.data('lrank').data||[];
+    const s1={name:'Ranking leads por tratar',notes:['Ranking de leads por tratar · por representante e etapa do pipeline',...filtros],
+      head:['Posição','Representante','Supervisor','Em aberto','% do total em aberto','Novo (sem atendimento)','Tentando contato','Qualificando','Nutrindo','Em atendimento (saíram de Novo)','Parados +60 dias','Total de leads','Convertidos','Taxa de conversão','Desqualificados'],
+      widths:[9,30,16,11,13,14,13,12,11,15,13,12,12,13,14], fmt:{4:'pct',13:'pct'},
+      rows:lr.map((r,i)=>[i+1,r.rep,(rinfo.get(r.id)||{}).supervisor||'',r.aberto,r.share,r.Novo,r['Tentando contato'],r.Qualificando,r.Nutrindo,r.aberto-r.Novo,r.parado,r.leads,r.conv,r.leads?r.conv/r.leads:null,r.desq])};
+    if(lr.length) s1.rows.push(['Total','','',d3.sum(lr,r=>r.aberto),1,d3.sum(lr,r=>r.Novo),d3.sum(lr,r=>r['Tentando contato']),d3.sum(lr,r=>r.Qualificando),d3.sum(lr,r=>r.Nutrindo),d3.sum(lr,r=>r.aberto-r.Novo),d3.sum(lr,r=>r.parado),d3.sum(lr,r=>r.leads),d3.sum(lr,r=>r.conv),d3.sum(lr,r=>r.leads)?d3.sum(lr,r=>r.conv)/d3.sum(lr,r=>r.leads):null,d3.sum(lr,r=>r.desq)]);
+    const rows=X.lf(dash.data('leadrows').data||[],p).slice().sort((a,b)=>{ const ra=(rinfo.get(a.rid)||{}).rep||a.rid, rb=(rinfo.get(b.rid)||{}).rep||b.rid; return ra<rb?-1:ra>rb?1:(a.st<b.st?-1:a.st>b.st?1:0); });
+    const s2={name:'Leads (detalhe)',notes:['Leads um a um com os mesmos filtros · o painel não guarda nome, e-mail ou telefone do lead',...filtros],
+      head:['Representante','Supervisor','Mês de criação','Status','Em aberto?','Parado +60 dias?','Origem','UF','Convertido?','Motivo de desqualificação'],
+      widths:[30,16,14,18,11,15,40,6,12,36],
+      rows:rows.map(x=>{ const ab=['Novo','Tentando contato','Qualificando','Nutrindo'].indexOf(x.st)>=0; const ri=rinfo.get(x.rid)||{};
+        return [ri.rep||x.rid,ri.supervisor||'',x.m?P.mes(x.m):'',x.st,ab?'Sim':'Não',ab&&x.m&&x.m<=lrLim()?'Sim':'Não',x.o||'Não informada',x.uf||'',x.cv?'Sim':'Não',x.mot||'']; })};
+    const rk=dash.data('rank').data||[];
+    const s3={name:'Ranking sell-in',notes:['Ranking de representantes por sell-in (filtros da aba Sell-in)','Exportado em '+hs],
+      head:['Posição','Representante','Supervisor','Sell-in','% do total','Pedidos','Ticket médio','Ago–out/25','Ago–out/26','Var. %'],
+      widths:[9,30,16,16,11,10,14,15,15,10], fmt:{3:'brl',4:'pct',6:'brl',7:'brl',8:'brl',9:'pct'},
+      rows:rk.map((r,i)=>[i+1,r.rep,r.supervisor,r.sellin,r.share,r.pedidos,r.ticket,r.ago_out_25,r.ago_out_26,r.var_pct])};
+    const blob=PX_XLSX.build([s1,s2,s3]);
+    const slug=(p.l_orig.length===1?p.l_orig[0]:(p.l_orig.length?'varias-origens':'todas-origens')).normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^A-Za-z0-9]+/g,'-').replace(/^-|-$/g,'').toLowerCase();
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='leads_por_tratar_'+slug+'_'+hoje.toISOString().slice(0,10)+'.xlsx'; document.body.appendChild(a); a.click();
+    setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500);
+  }
+  function lrLim(){ const [y,m]=X.HOJE.split('-').map(Number); const d=new Date(y,m-1-2,1); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); }
+  (function(){ const b=document.getElementById('btn-xlsx'); if(!b) return; b.addEventListener('click',()=>{ b.disabled=true; try{ exportarLeads(); }catch(e){ console.error('xlsx',e); alert('Não foi possível gerar o XLSX: '+e.message); } finally{ setTimeout(()=>b.disabled=false,600); } }); })();
+  const RK_ET=[['Novo','var(--px-bad)','Novo (sem atendimento)'],['Tentando contato','var(--px-a2)','Tentando contato'],['Qualificando','var(--px-a1)','Qualificando'],['Nutrindo','var(--px-a3)','Nutrindo']];
+  function rankLeads(ul){
+    const tit=document.getElementById('rank-tit'), note=document.getElementById('rank-note'), lg=document.getElementById('rank-lg');
+    if(tit) tit.textContent='Ranking de leads por tratar';
+    const po=(dash.params()||{}).l_orig||[]; const og=Array.isArray(po)?po:[po];
+    if(note) note.textContent='Leads em aberto por representante e etapa do pipeline'+(og.length?' · origem: '+og.join(', '):' · todas as origens')+'. "Parado" = em aberto e criado há mais de 60 dias.';
+    if(lg){ if(lg.hidden) lg.hidden=false; lg.replaceChildren(...RK_ET.map(([k,c,n])=>{ const s=document.createElement('span'); const i=document.createElement('i'); i.style.background=c; s.append(i,n); return s; })); }
+    const q=dash.data('lrank'); if(q.status!=='ok'){ ul.replaceChildren(); return; }
+    if(!q.data.length){ ul.replaceChildren(Object.assign(document.createElement('li'),{className:'px-msg',textContent:'Nenhum lead em aberto com os filtros atuais.'})); return; }
+    const cur=dash.params().rep||'r00'; const mx=d3.max(q.data,r=>r.aberto)||1;
+    ul.replaceChildren(...q.data.map((r,i)=>{ const li=document.createElement('li'); const b=document.createElement('button');
+      b.setAttribute('aria-current', r.id===cur?'true':'false');
+      b.title=r.rep+'\n'+RK_ET.map(([k])=>k+': '+P.int(r[k])).join('\n')+'\nParados há +60 dias: '+P.int(r.parado)+'\nTotal de leads no território: '+P.int(r.leads);
+      const pos=document.createElement('span'); pos.className='pos'; pos.textContent=String(i+1).padStart(2,'0');
+      const nm=document.createElement('span'); nm.className='nm'; nm.textContent=r.rep;
+      const vl=document.createElement('span'); vl.className='vl'; vl.textContent=P.int(r.aberto)+' · '+P.pct(r.share);
+      const bar=document.createElement('span'); bar.className='bar stk'; bar.style.width=(100*r.aberto/mx).toFixed(1)+'%';
+      RK_ET.forEach(([k,c])=>{ if(!r[k]) return; const f=document.createElement('i'); f.style.width=(100*r[k]/r.aberto).toFixed(2)+'%'; f.style.background=c; bar.appendChild(f); });
+      const sub=document.createElement('span'); sub.className='sub'; sub.textContent=P.int(r.Novo)+' Novo · '+P.int(r.aberto-r.Novo)+' em atendimento · '+P.int(r.parado)+' parados +60d';
+      b.append(pos,nm,vl,bar,sub); b.onclick=()=>dash.setParams({rep: r.id===cur?'r00':r.id}); li.appendChild(b); return li; }));
+  }
   dash.draw('rank',ul=>{
+    const pl=document.getElementById('pg-leads');
+    if(pl && !pl.hidden){ rankLeads(ul); return; }
+    { const tit=document.getElementById('rank-tit'), note=document.getElementById('rank-note'), lg=document.getElementById('rank-lg');
+      if(tit) tit.textContent='Ranking de representantes'; if(note) note.textContent='Sell-in acumulado jun/25–nov/26 e participação no total.'; if(lg && !lg.hidden) lg.hidden=true; }
     const q=dash.data('rank'); if(q.status!=='ok'){ ul.replaceChildren(); return; }
     const cur=dash.params().rep||'r00'; const mx=d3.max(q.data,r=>r.sellin)||1;
     ul.replaceChildren(...q.data.map((r,i)=>{ const li=document.createElement('li'); const b=document.createElement('button');
